@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+  /* Custom styles to match the design */
+/* Navbar Styling */
+@media (max-width: 768px) {
+    .navbar .container-fluid {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+    }
+
+    .navbar-brand {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        font-size: 18px;
+        color: #000;
+    }
+
+    .menu-btn {
+        margin-left: auto;
+        font-size: 24px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        display: flex;
+        align-items: center; /* Center the button vertically */
+        height: 40px;
+    }
+
+    .fa-th {
+        font-size: 24px;
+    }
+}
+
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    height: 70px;
+    transition: background-color 0.3s, height 0.3s; /* Add transition for smooth changes */
+}
+
+.navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background on scroll */
+    height: 60px; /* Reduce height on scroll */
+}
+
+.navbar .container-fluid {
+    height: 100%; /* Make container fill navbar height */
+}
+
+.menu-container {
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100vh;
+    background: white;
+    transition: 0.3s ease-in-out;
+    box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+.menu-container.active {
+    right: 0;
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.menu-list li {
+    padding: 10px 0;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.dropdown .arrow {
+    float: right;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #000;
+}
+
+.navbar-brand img {
+    height: 40px; /* Adjust to match the image in your reference */
+    margin-right: 10px;
+}
+
+/* Six-dot button - Visible only on mobile */
+/* .menu-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    display: none; 
+    padding: 0.375rem 0.75rem;
+    line-height: 1.5;
+    align-self: center;Initially hidden 
+} */
+
+/* Mobile Menu */
+.menu-container {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background-color: #F9F9F9;
+    transition: right 0.3s ease-in-out;
+    box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1050;
+    padding: 20px;
+    display: none; /* Initially hidden */
+}
+
+.menu-container.active {
+    right: 0;
+    display: block;
+}
+
+/* Mobile menu content */
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.menu-list li {
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-list .arrow {
+    font-size: 18px;
+}
+
+.auth-links {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.sign-in {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.sign-up {
+    background-color: #3B57F4;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Show six-dot button only on mobile */
+@media (max-width: 991px) {
+    .menu-btn {
+        display: block;
+    }
+
+    .navbar-nav {
+        display: none !important;
+    }
+}
+
+/* Hide mobile menu for desktop view */
+@media (min-width: 992px) {
+    .menu-container {
+        display: none !important;
+    }
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+}
+
+.feature-title {
+    color: #333;
+    font-weight: 600;
+}
+
+.resources-section {
+    background-color: #f8f9fa;
+}
+
+.shark-investor-badge {
+    background-color: #17a2b8;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.confetti-background {
+    position: relative;
+    overflow: hidden;
+}
+
+body {
+    padding-top: 70px; /* Adjusted to match the reduced navbar height */
+}
+
+.navbar-nav .nav-link {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+}
+
+.btn-primary {
+    font-size: 0.875rem;
+}
+
+.confetti-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% -20%, rgba(255,182,193,0.3) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.fw-bold {
+    text-align: left;
+}
+
+.rightmost-container {
+    margin-top: -50px; /* Slight lift to match image layout */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar-nav .nav-link {
+        font-size: 0.75rem;
+    }
+
+    .btn-primary {
+        font-size: 0.75rem;
+    }
+
+    .hero-image {
+        height: 400px; /* Adjust height for mobile */
+    }
+
+    .feature-card {
+        margin-bottom: 20px; /* Add spacing between cards */
+    }
+
+    .text-center {
+        text-align: center; /* Center text on smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .feature-icon {
+        width: 30px; /* Smaller icons for mobile */
+        height: 30px;
+    }
+
+    .fw-bold {
+        font-size: 1.5rem; /* Adjust font size for headings */
+    }
+}
+    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bluestock - Stock Market Analytics</title>
+  <meta name="description" content="Free & Open Stock Market Analytics For GenZ" />
+  <meta name="author" content="Bluestock" />
+  <meta property="og:image" content="/og-image.png" />
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <div id="root">
+    <nav class="navbar navbar-expand-lg fixed-top py-0 px-2">
+      <div class="container-fluid d-flex justify-content-between align-items-center">
+          <!-- Logo -->
+          <a class="navbar-brand" href="#">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/34e822a9b0ce102e0545f37d403492a9ef3d8830" alt="Bluestock Logo" height="70">
+              <span class="ms-2">BLUESTOCK</span>
+          </a>
+  
+          <!-- Desktop Navbar Links -->
+          <div class="collapse navbar-collapse justify-content-center d-none d-lg-flex">
+              <ul class="navbar-nav">
+                  <li class="nav-item"><a class="nav-link fw-normal text-secondary" href="#">PRODUCTS</a></li>
+                  <li class="nav-item"><a class="nav-link fw-normal text-secondary" href="#">COMMUNITY</a></li>
+                  <li class="nav-item"><a class="nav-link fw-normal text-secondary" href="#">MEDIA</a></li>
+                  <li class="nav-item"><a class="nav-link fw-normal text-secondary" href="#">SUPPORT</a></li>
+                  <li class="nav-item"><a class="nav-link fw-normal text-secondary" href="#">LIVE NEWS <span class="badge bg-primary">NEW</span></a></li>
+              </ul>
+          </div>
+  
+          <!-- Right Side (Desktop: Sign In & Sign Up | Mobile: Six-Dot Menu) -->
+          <div class="d-flex align-items-center">
+              <a href="#" class="fw-normal me-3 d-none d-lg-inline">Sign In</a>
+              <button class="btn btn-primary fw-normal me-3 d-none d-lg-inline">Sign Up Now</button>
+  
+              <!-- Six-Dot Button (Visible Only on Mobile) -->
+              <button class="menu-btn" id="menuBtn">
+                <i class="fas fa-th"></i>
+            </button>
+            
+          </div>
+      </div>
+  </nav>
+  
+  <!-- Mobile Menu -->
+  <div class="menu-container" id="menu">
+      <div class="menu-header">
+          <span></span>
+          <button class="close-btn" id="closeBtn">&times;</button>
+      </div>
+  
+      <ul class="menu-list">
+          <li>WHO WE ARE?</li>
+          <li class="dropdown">PRODUCTS <span class="arrow">&#9662;</span></li>
+          <li class="dropdown">TOOLS <span class="arrow">&#9662;</span></li>
+          <li class="dropdown">MEDIA <span class="arrow">&#9662;</span></li>
+          <li class="dropdown">SUPPORT <span class="arrow">&#9662;</span></li>
+          <li class="dropdown">OTHERS <span class="arrow">&#9662;</span></li>
+          <li><a href="#" class="text-dark">Sign In</a></li>
+          <li><a href="#" class="btn btn-primary w-100">Sign Up Now</a></li>
+      </ul>
+  </div>
+
+<script>
+   // Open Menu
+document.getElementById("menuBtn").addEventListener("click", function() {
+    document.getElementById("menu").classList.add("active");
+});
+
+// Reference navbar for scrolling effect
+const navbar = document.querySelector(".navbar");
+
+window.addEventListener("scroll", function() {
+    if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
+});
+
+// Close Menu
+document.getElementById("closeBtn").addEventListener("click", function() {
+    document.getElementById("menu").classList.remove("active");
+});
+
+</script>
+  
+    
+    <!-- Hero Section -->
+<!-- Hero Section -->
+<section class="container-fluid px-4 mt-3">
+    <div class="row align-items-center justify-content-center">
+        <!-- Left Side (Text Content) -->
+        <div class="col-lg-5 col-md-8 col-12 text-center text-lg-start">
+            <!-- Aligned NEW App 2.0 properly -->
+            <div class="d-flex align-items-center mb-3">
+              <span class="badge bg-success text-white px-3 py-2 fw-normal me-2">NEW</span>
+              <span class="fw-bold">App 2.0 <i class="fas fa-arrow-right ms-1"></i></span>
+            </div>
+
+            <h1 class="display-5 fw-bold mb-3">
+                Free & Open<br>Stock Market Analytics<br>For GenZ
+            </h1>
+
+            <p class="text-muted mb-4 fs-6 fs-md-5">
+                Thousands of traders and investors in India use our<br class="d-none d-md-inline">
+                stable and reliable mobile app regularly.
+            </p>
+
+            <div class="mb-4">
+                <p class="fw-bold mb-2 fs-5">Get early access</p>
+                <div class="input-group mx-auto mx-lg-0" style="max-width: 400px;">
+                    <span class="input-group-text bg-white">+91</span>
+                    <input type="text" class="form-control" placeholder="Enter mobile number">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side (Image Section) -->
+        <div class="col-lg-6 col-md-8 col-12 mt-4 mt-lg-0 d-flex justify-content-center">
+          <div class="hero-image bg-light p-3 p-md-5 rounded-4 w-100" style="max-width: 500px;">
+              <!-- Your Image Here -->
+              <img src="your-image.jpg" alt="" class="img-fluid rounded-3">
+          </div>
+      </div>
+    </div>
+</section>
+
+
+  
+
+   <!-- Features Section -->
+<!-- Features Section -->
+<section class="features-intro py-5">
+  <div class="container">
+      <div class="row align-items-center text-center text-md-start">
+          <!-- Left Content -->
+          <div class="col-md-6 mb-4 mb-md-0 d-flex flex-column align-items-center align-items-md-start">
+              <p class="text-muted small">Built for a growing India.</p>
+              <h2 class="fw-bold text-center text-md-start">
+                  <span class="text-primary d-block">It's easy</span>
+                  <span class="text-dark d-block">It's powerful</span>
+                  <span class="text-primary d-block">It's beautiful</span>
+              </h2>
+          </div>
+
+          <!-- Right Content -->
+          <div class="col-md-6 text-center">
+              <img src="images/thumbsup.jpg" alt="Thumbs up" class="img-fluid rounded mb-3">
+              <p class="fs-5">
+                  <strong>Beautiful UI</strong> for the modern trader,<br>
+                  with access on all platforms,<br>
+                  to trade <strong>on the go</strong>
+              </p>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+    
+    <!-- Highlights Section -->
+   <section class="features-section text-center py-5">
+    <div class="container">
+        <p class="text-secondary fs-5 fw-medium mb-3">Power-packed with everything you need.</p>
+        <h2 class="text-center fw-bold mb-3">Bluestock Highlights</h2>
+        <div class="d-flex justify-content-center text-center">
+          <p class="text-secondary fs-5 fw-medium mb-5 custom-text">
+              Simplified enough for beginners, Detailed enough for experts.<br class="d-none d-md-block">
+              Track upcoming IPOs, Leverage advanced tools to<br class="d-none d-md-block">
+              make the best decisions.
+          </p>
+      </div>
+      
+      
+
+      <div class="container">
+        <div class="row gy-4 justify-content-center">
+            <div class="col-lg-4 col-md-6 col-12 d-flex justify-content-center">
+                <div class="feature-card bg-light-red h-100 p-4 rounded shadow-sm w-100">
+                    <h3 class="text-primary fw-semibold mb-3 text-center border-bottom pb-2">Learn Chart</h3>
+                    <div class="d-flex flex-column gap-3">
+                        <div class="d-flex align-items-center px-3 py-2">
+                            <div class="numbered-circle bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3">1</div>
+                            <div class="fw-medium">Technical, Fundamental</div>
+                        </div>
+                        <div class="d-flex align-items-center px-3 py-2">
+                            <div class="numbered-circle bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3">2</div>
+                            <div class="fw-medium">Finology, Facts, Equity</div>
+                        </div>
+                        <div class="d-flex align-items-center px-3 py-2">
+                            <div class="numbered-circle bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3">3</div>
+                            <div class="fw-medium">Trading Psychology</div>
+                        </div>
+                        <div class="d-flex align-items-center px-3 py-2">
+                            <div class="numbered-circle bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3">4</div>
+                            <div class="fw-medium">Risk Assessment</div>
+                        </div>
+                        <div class="d-flex align-items-center px-3 py-2">
+                            <div class="numbered-circle bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3">5</div>
+                            <div class="fw-medium">Option Trading</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-lg-4 col-md-6 col-12 d-flex justify-content-center">
+                <div class="feature-card bg-light-red h-100 p-4 rounded shadow-sm w-100">
+                    <h3 class="text-primary fw-semibold mb-3 text-center border-bottom pb-2">Analytics</h3>
+                    <div class="d-flex flex-column gap-3">
+                        <div class="d-flex align-items-center px-3 py-2">
+                            <div class="numbered-circle bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3">1</div>
+                            <div class="fw-medium">Live Sector Trend</div>
+                        </div>
+                        <div class="d-flex align-items-center px-3 py-2">
+                            <div class="numbered-circle bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3">2</div>
+                            <div class="fw-medium">IPO DRHP</div>
+                        </div>
+                        <div class="d-flex align-items-center px-3 py-2">
+                            <div class="numbered-circle bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3">3</div>
+                            <div class="fw-medium">Sectoral Distribution</div>
+                        </div>
+                        <div class="d-flex align-items-center px-3 py-2">
+                            <div class="numbered-circle bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3">4</div>
+                            <div class="fw-medium">Stock Overview</div>
+                        </div>
+                        <div class="d-flex align-items-center px-3 py-2">
+                            <div class="numbered-circle bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3">5</div>
+                            <div class="fw-medium">TradingView Chart</div>
+                        </div>
+                        <div class="d-flex align-items-center px-3 py-2">
+                            <div class="numbered-circle bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3">6</div>
+                            <div class="fw-medium">Technical, Fundamental</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-lg-4 col-md-12 col-12 d-flex justify-content-center">
+                <div class="feature-card bg-light-red h-100 p-4 rounded shadow-sm w-100">
+                    <h3 class="text-primary fw-semibold mb-3 text-center border-bottom pb-2">Club</h3>
+                    <div class="d-flex flex-column gap-3">
+                        <div class="d-flex align-items-center px-3 py-2">
+                            <div class="numbered-circle bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3">1</div>
+                            <div class="fw-medium">Educational Resources</div>
+                        </div>
+                        <div class="d-flex align-items-center px-3 py-2">
+                            <div class="numbered-circle bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3">2</div>
+                            <div class="fw-medium">Real-time Chat</div>
+                        </div>
+                        <div class="d-flex align-items-center px-3 py-2">
+                            <div class="numbered-circle bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3">3</div>
+                            <div class="fw-medium">Forums</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                </div>
+
+        </div> <!-- row -->
+    </div> <!-- container -->
+</section>
+
+    <!-- Why Us Section -->
+    <section class="py-5 px-5 bg-white">
+      <div class="container text-center">
+        <h2 class="fw-bold mb-3 text-center text-md-start">Why do traders love Bluestock?</h2>
+
+        
+
+        <p class="text-start m-0 p-0">
+            Bluestock caters to traders looking to enhance <br>
+            their technical analysis skills, providing a user-friendly <br>
+            environment to interpret and leverage charts effectively <br>
+            for strategic decision-making in the financial markets.
+          </p>
+        
+    
+        <div class="row justify-content-start g-5 align-items-center mt-3 ms-2">
+          <!-- 1st Image -->
+          <div class="col-auto feature-card bg-light-red" 
+            style="width: 130px; height: 100px; display: flex; align-items: center; justify-content: center; border-radius: 10px;">
+            <div class="d-flex flex-column align-items-center text-center">
+              <img src="images/equity.png" alt="Analytics" class="img-fluid mb-2 mt-1" style="width: 100px;">
+              <div class="fs-6 fw-medium" style="margin-top: -20px;">Analytics</div>
+            </div>
+          </div>
+
+          <!-- 2nd Image -->
+          <div class="col-auto ms-5 mt-5 feature-card py-1 feature-card bg-light-red"
+                style="width: 130px; height: 100px; display: flex; align-items: center; justify-content: center; border-radius: 10px;">
+            <div class="d-flex flex-column align-items-center text-center">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/2106174d5854399bc0bd3ce54c3df924c2d6136f" 
+                   alt="Blogs" class="img-fluid mb-2 mt-1" style="width: 110px;">
+              <div class="fs-6 fw-medium">Blogs</div>
+            </div>
+          </div>
+          
+          <div class="col-auto ms-5 mt-5 feature-card py-1 feature-card bg-light-red"
+                style="width: 130px; height: 100px; display: flex; align-items: center; justify-content: center; border-radius: 10px;">
+            <div class="d-flex flex-column align-items-center text-center">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/fba97be79534d407362b01315732f4fcd53bc61c"
+                  alt="Videos" class="img-fluid mb-2" 
+                  style="width: 80px;">
+              <div class="fs-6 fw-medium">Videos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- All Things Finance Section -->
+    <section class="py-5 bg-white" style="position: relative; top: -50px;">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="container-fluid position-relative">
+            <div class="row">
+              <div class="container position-relative">
+                <div class="row">
+                  <div class="col-12 col-md-6 offset-md-6 ">
+                    <div class="rightmost-container text-end position-relative">
+                      <div class="text-start" style="margin-left: 120px; margin-top: -180px;">
+                        <span class="badge bg-success text-white px-2 py-1 mb-1">Resources</span>
+                      </div>
+                      <h2 class="fw-bold text-nowrap text-end"> All things finance, right here </h2>
+                      <p class="text-secondary text-end"> Master the art of investing and secure your financial future<br>
+                        with Bluestock learning resources. </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-end ms-n3" style="height: -1300px;"> 
+            <img src="images/59 - Copy.png" alt="Analytics" class="img-fluid" style="max-width: 250px; width: 80%; margin-top:-600px; margin-right: 20px;"> 
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- On The Go Section -->
+    <section class="py-5 bg-light">
+      <div class="container">
+        <div class="row align-items-center">
+          <!-- Left Content -->
+          <div class="col-lg-6">
+            <h2 class="fw-bold mb-4 mt-n2 ">On The Go</h2>
+            <p class="mb-4">
+              We believe that everyone should be able to wield technology while 
+              learning trading. Use Bluestock on the go, on your mobile device. 
+              Experience the ultimate trading experience on Android or iOS.
+            </p>
+            <div class="row mt-4 align-items-center">
+              <!-- QR Code -->
+              <div class="col-md-5 text-center">
+                <img src="images/app-QR.png" alt="Analytics" class="img-fluid" style="width: 200px;">
+              </div>
+              <!-- Scan and Download Text -->
+              <div class="col-md-7">
+                <h4 class="text-primary fw-semibold mb-2">Scan and Download</h4>
+                <p class="text-secondary fs-5 fw-medium">
+                  Use your Android device<br> to download the app.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Right Image -->
+          <div class="col-lg-6 text-center mt-4 mt-lg-0 d-flex justify-content-center justify-content-lg-end align-items-center">
+            <img src="images/s20.png" alt="Analytics" class="img-fluid" style="max-width: 300px; width: 100%;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="text-center bg-white px-5 py-5"> 
+      <div class="container">
+        <div class="mb-4"> 
+          <h2 class="fw-bold">
+            <span class="text-primary">Bluestock App</span> 
+            <span class="text-primary fw-bold">2.0</span> 
+            is Live Now!
+          </h2>
+          <p class="text-secondary fs-5 ms-5" style="margin-top: -40px;">Download Our App</p>
+
+          <div class="d-flex justify-content-end gap-3 mt-n5" style="margin-top: -60px;">
+            <img src="images/google play download bar.png" alt="Google Play" style="height: 50px;">
+            <img src="images/app store download bar.png" alt="App Store" style="height: 50px;">
+          </div>
+        </div> 
+        <div class="d-flex align-items-center justify-content-center gap-3 mt-5"> 
+          <div class="d-flex position-relative" style="margin-right: -30px;"> 
+            <div class="d-flex position-relative" style="margin-right: -15px;"> 
+              <img src="https://randomuser.me/api/portraits/men/1.jpg" class="rounded-circle border border-light" alt="User" style="width: 56px; height: 56px; object-fit: cover; margin-right: -15px;"> 
+              <img src="https://randomuser.me/api/portraits/women/2.jpg" class="rounded-circle border border-light" alt="User" style="width: 56px; height: 56px; object-fit: cover; margin-right: -15px;"> 
+              <img src="https://randomuser.me/api/portraits/men/3.jpg" class="rounded-circle border border-light" alt="User" style="width: 56px; height: 56px; object-fit: cover; margin-right: -15px;"> 
+              <img src="https://randomuser.me/api/portraits/women/4.jpg" class="rounded-circle border border-light" alt="User" style="width: 56px; height: 56px; object-fit: cover;"> 
+            </div>
+          </div> 
+          <div class="text-warning fs-5 ms-5 text-center"> 
+            <i class="bi bi-star-fill" style="color: yellow;"></i> 
+            <i class="bi bi-star-fill" style="color: yellow;"></i> 
+            <i class="bi bi-star-fill" style="color: yellow;"></i> 
+            <i class="bi bi-star-fill" style="color: yellow;"></i> 
+            <i class="bi bi-star-fill" style="color: yellow;"></i> 
+          </div>
+          <div class="text-dark fs-5 mt-4">(5/5 by 100+ users)</div>
+        </div> 
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-5 bg-light">
+      <div class="container">
+        <h2 class="fw-semibold fs-2 text-center mb-5">What do our users say?</h2>
+        <div class="row">
+          <!-- Testimonial Card 1 -->
+          <div class="col-md-4 mb-4">
+            <div class="card shadow p-4 position-relative">
+              <h3 class="fw-semibold fs-4 mb-3">Venkatesh</h3>
+              <p class="fs-5 text-secondary">
+                Excellent app with a fantastic UI! 🤩 Even though the app is still in progressive mode, 
+                I must say it is getting better every day. It has an amazing user interface.
+              </p>
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/4c9c5fb379f2fd41b9975b132aa1ae464ed8990b" 
+                   alt="Quote Icon" class="quote-icon position-absolute top-0 end-0 m-3" width="40">
+            </div>
+          </div>
+          <!-- Testimonial Card 2 -->
+          <div class="col-md-4 mb-4">
+            <div class="card shadow p-4 position-relative">
+              <h3 class="fw-semibold fs-4 mb-3">Sarthak</h3>
+              <p class="fs-5 text-secondary">
+                Bluestock app provides a user-friendly interface 📈 The clean design and intuitive 
+                navigation enhance the overall experience. It has an amazing user interface.
+              </p>
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/878862e009ed6ac6fbf31980e70ebafc24659751"
+                   alt="Quote Icon" class="quote-icon position-absolute top-0 end-0 m-3" width="40">
+            </div>
+          </div>
+          <!-- Testimonial Card 3 -->
+          <div class="col-md-4 mb-4">
+            <div class="card shadow p-4 position-relative">
+              <h3 class="fw-semibold fs-4 mb-3">Sakshi</h3>
+              <p class="fs-5 text-secondary">
+                Bluestock for chart learning & technical analysis has exceeded my expectations. 
+                The UI is well-designed, making it a breeze to navigate and learn charts.
+              </p>
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0ba0af7c285a3d34ded833e9c3b5fe5d294f9032"
+                   alt="Quote Icon" class="quote-icon position-absolute top-0 end-0 m-3" width="40">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <div class="d-flex justify-content-center gap-3 mt-4">
+          <button class="btn border border-primary border-3 rounded-3 text-primary fw-semibold">&lt;</button>
+          <button class="btn border border-primary border-3 rounded-3 text-primary fw-semibold">&gt;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Market Movers Section -->
+    <section class="py-5 bg-white">
+      <div class="container py-5">
+          <h2 class="fw-bold">Market Movers</h2>
+          <p class="fw-semibold">Learn about Stock market updates today - 52 Week Highs, 52 Week Lows, and more.</p>
+  
+          <!-- NSE/BSE Selection Dropdown -->
+          <div class="mb-4">
+              <label for="exchangeSelect" class="fw-semibold">Select Exchange:</label>
+              <select class="form-select w-25" id="exchangeSelect">
+                  <option value="NSE">NSE</option>
+                  <option value="BSE">BSE</option>
+              </select>
+          </div>
+  
+          <div class="row">
+              <!-- 52 Week Highs -->
+              <div class="col-md-6">
+                  <div class="card border-primary shadow-sm">
+                      <div class="card-header bg-light-red text-black">52 Week High</div>
+                      <div class="card-body">
+                          <table class="table table-striped">
+                              <thead>
+                                  <tr>
+                                      <th>Company</th>
+                                      <th id="highPriceHeader">NSE Price (Rs)</th>
+                                      <th>Day High (Rs)</th>
+                                  </tr>
+                              </thead>
+                              <tbody id="highTable">
+                                  <!-- Data updates dynamically -->
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+  
+              <!-- 52 Week Lows -->
+              <div class="col-md-6">
+                  <div class="card border-danger shadow-sm">
+                      <div class="card-header bg-light-red text-black">52 Week Low</div>
+                      <div class="card-body">
+                          <table class="table table-striped">
+                              <thead>
+                                  <tr>
+                                      <th>Company</th>
+                                      <th id="lowPriceHeader">NSE Price (Rs)</th>
+                                      <th>Change</th>
+                                  </tr>
+                              </thead>
+                              <tbody id="lowTable">
+                                  <!-- Data updates dynamically -->
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </section>
+  
+    <script>
+      const stockData = {
+          "NSE": {
+              "high": [
+                  { "Company": "Indian Railway Finance", "Price": 113.40, "Day_High": 114.00 },
+                  { "Company": "Firstsource Solution", "Price": 209.90, "Day_High": 217.00 },
+                  { "Company": "PNB", "Price": 69.80, "Day_High": 215.80  },
+                  { "Company": "Swiggy", "Price": 85.80, "Day_High": 415.80  },
+                  { "Company": "HCL Tech.", "Price": 1535.90, "Day_High": 1550.00 },
+                  { "Company": "Tata Motors", "Price": 55.80, "Day_High": 65.77 },
+                  { "Company": "Zomato", "Price": 35.80, "Day_High":39.77 },
+                  { "Company": "ONGC", "Price": 222.10, "Day_High": 223.50 },
+                  { "Company": "HCL Tech.", "Price": 1540.80, "Day_High": 1555.00 },
+                  { "Company": "ONGC", "Price": 223.40, "Day_High": 224.75 },
+                  { "Company": "Swiggy", "Price": 85.80, "Day_High": 114.567},
+                  { "Company": "Mukesh Babu Fin Serv", "Price": 149.10, "Day_High": 157.89 }
+              ],
+              "low": [
+                  { "Company": "Mukesh Babu Fin Serv", "Price": 149.10, "Change": "+20%" },
+                  { "Company": "Jupiter Infomedia", "Price": 50.20, "Change": "+19.98%" },
+                  { "Company": "Jigar Cables", "Price": 66.45, "Change": "+19.95%" },
+                  { "Company": "Tata Motors", "Price": 55.80, "Change": "+29.3%" },
+                  { "Company": "Zomato", "Price": 35.80, "Change": "+17.3%" },
+                  { "Company": "PNB", "Price": 69.80, "Change": "+39.3%" },
+                  { "Company": "Swiggy", "Price": 85.80, "Change": "+29.3%" },
+                  { "Company": "ONGC", "Price": 223.40, "Change": "+24.75%" },
+                  { "Company": "HCL Tech.", "Price": 1540.80, "Change": "+22.23%" },
+                  { "Company": "Firstsource Solution", "Price": 209.90, "Change": "+43.66%" },
+                  { "Company": "Indian Railway Finance", "Price": 113.40, "Change": "+12.33%" },
+                  { "Company": "Adani Power", "Price": 113.40, "Change": "+17.33%" }
+              ]
+          },
+          "BSE": {
+              "high": [
+                  { "Company": "Indian Railway Finance", "Price": 112.80, "Day_High": 113.50 },
+                  { "Company": "Firstsource Solution", "Price": 208.60, "Day_High": 215.80 },
+                  { "Company": "Tata Motors", "Price": 55.80,"Day_High": 315.80   },
+                  { "Company": "Zomato", "Price": 35.80, "Day_High": 115.80  },
+                  { "Company": "PNB", "Price": 69.80, "Day_High": 215.80  },
+                  { "Company": "Swiggy", "Price": 85.80, "Day_High": 415.80  },
+                  { "Company": "HCL Tech.", "Price": 1535.90, "Day_High": 1550.00 },
+                  { "Company": "ONGC", "Price": 222.10, "Day_High": 223.50 }
+              ],
+              "low": [
+                  { "Company": "Mukesh Babu Fin Serv", "Price": 148.50, "Change": "+19.5%" },
+                  { "Company": "Jupiter Infomedia", "Price": 49.80, "Change": "+19.75%" },
+                  { "Company": "Jigar Cables", "Price": 65.90, "Change": "+19.65%" },
+                  { "Company": "Dhanlaxmi Bank", "Price": 35.80, "Change": "+19.3%" },
+                  { "Company": "Tata Motors", "Price": 55.80, "Change": "+29.3%" },
+                  { "Company": "Zomato", "Price": 35.80, "Change": "+17.3%" },
+                  { "Company": "PNB", "Price": 69.80, "Change": "+39.3%" },
+                  { "Company": "Swiggy", "Price": 85.80, "Change": "+29.3%" }
+              ]
+          }
+      };
+  
+      const exchangeSelect = document.getElementById("exchangeSelect");
+      const highTable = document.getElementById("highTable");
+      const lowTable = document.getElementById("lowTable");
+      const highPriceHeader = document.getElementById("highPriceHeader");
+      const lowPriceHeader = document.getElementById("lowPriceHeader");
+  
+      function updateTables(exchange) {
+          highTable.innerHTML = "";
+          lowTable.innerHTML = "";
+          highPriceHeader.textContent = `${exchange} Price (Rs)`;
+          lowPriceHeader.textContent = `${exchange} Price (Rs)`;
+  
+          stockData[exchange]["high"].forEach(stock => {
+              highTable.innerHTML += `<tr>
+                  <td>${stock.Company}</td>
+                  <td>${stock.Price}</td>
+                  <td>${stock.Day_High}</td>
+              </tr>`;
+          });
+  
+          stockData[exchange]["low"].forEach(stock => {
+              lowTable.innerHTML += `<tr>
+                  <td>${stock.Company}</td>
+                  <td>${stock.Price}</td>
+                  <td>${stock.Change}</td>
+              </tr>`;
+          });
+      }
+  
+      exchangeSelect.addEventListener("change", () => {
+          updateTables(exchangeSelect.value);
+      });
+  
+      updateTables("NSE");
+  </script>
+  
+
+    <!-- Compare Brokers Section -->
+    <section class="py-5"> 
+      <div class="container">
+          <div class="text-center mb-4">
+              <h2 class="fs-3 fw-bold mb-1">Compare and choose</h2>
+              <p class="fs-1 fw-bold text-primary mb-0">Best Stock Broker for you</p>
+          </div>
+          <div class="container">
+              <div class="row align-items-start mt-n5">
+                  <!-- Left Side - Dropdowns -->
+                  <div class="col-md-6 d-flex flex-column align-items-center">
+                      <div class="row g-3 justify-content-center">
+                          <!-- Angel One Dropdown -->
+                          <div class="col-6">
+                            <div class="d-flex align-items-center p-3 rounded shadow-lg"
+                                style="background-color: #E3E7FF; border-radius: 15px; box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);">
+                                <img src="images/angle one.png" alt="Angel One" 
+                                    style="height: 40px; border-radius: 8px;">
+                                <span class="fw-bold ms-3 fs-5 text-dark">Angel One</span>
+                                <i class="bi bi-chevron-down ms-auto"></i>
+                            </div>
+                        </div>
+                        
+  
+                          <!-- Zerodha Dropdown -->
+                          <div class="col-6">
+                            <div class="d-flex align-items-center p-3 rounded shadow-lg"
+                                style="background-color: #E3E7FF; border-radius: 15px; box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);">
+                                <img src="images/zerodha-logo.png" alt="Zerodha" 
+                                    style="height: 40px; border-radius: 8px;">
+                                <span class="fw-bold ms-3 fs-5 text-dark">Zerodha</span>
+                                <i class="bi bi-chevron-down ms-auto"></i>
+                            </div>
+                        </div>
+                        
+  
+                          <!-- Compare Button -->
+                          <div class="col-12 d-flex justify-content-center mt-4">
+                              <button class="btn btn-primary fs-5 px-5 py-1">Compare</button>
+                          </div>
+                      </div>
+                  </div>
+              <div class="col-md-6 d-flex justify-content-center position-relative" style="top: -150px;">
+              <img 
+                 src="IMAGES/ipo.png" 
+                 alt="Broker comparison illustration" 
+                 class="img-fluid" 
+                 style="width: 400px;"
+                />
+              </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  
+    
+    
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-2 border-top bg-light" style="margin-top: -100px;">
+    <div class="container">
+        <div class="d-flex flex-column flex-md-row align-items-center justify-content-center gap-1">
+            <p class="text-center text-secondary small mb-0">
+                © 2025 Bluestock. All rights reserved.
+            </p>
+        </div>
+    </div>
+</footer>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html

@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+  /* Custom styles to match the design */
+/* Navbar Styling */
+@media (max-width: 768px) {
+    .navbar .container-fluid {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+    }
+
+    .navbar-brand {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        font-size: 18px;
+        color: #000;
+    }
+
+    .menu-btn {
+        margin-left: auto;
+        font-size: 24px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        display: flex;
+        align-items: center; /* Center the button vertically */
+        height: 40px;
+    }
+
+    .fa-th {
+        font-size: 24px;
+    }
+}
+
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    height: 70px;
+    transition: background-color 0.3s, height 0.3s; /* Add transition for smooth changes */
+}
+
+.navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background on scroll */
+    height: 60px; /* Reduce height on scroll */
+}
+
+.navbar .container-fluid {
+    height: 100%; /* Make container fill navbar height */
+}
+
+.menu-container {
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100vh;
+    background: white;
+    transition: 0.3s ease-in-out;
+    box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+.menu-container.active {
+    right: 0;
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.menu-list li {
+    padding: 10px 0;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.dropdown .arrow {
+    float: right;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #000;
+}
+
+.navbar-brand img {
+    height: 40px; /* Adjust to match the image in your reference */
+    margin-right: 10px;
+}
+
+/* Six-dot button - Visible only on mobile */
+/* .menu-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    display: none; 
+    padding: 0.375rem 0.75rem;
+    line-height: 1.5;
+    align-self: center;Initially hidden 
+} */
+
+/* Mobile Menu */
+.menu-container {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background-color: #F9F9F9;
+    transition: right 0.3s ease-in-out;
+    box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1050;
+    padding: 20px;
+    display: none; /* Initially hidden */
+}
+
+.menu-container.active {
+    right: 0;
+    display: block;
+}
+
+/* Mobile menu content */
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.menu-list li {
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-list .arrow {
+    font-size: 18px;
+}
+
+.auth-links {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.sign-in {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.sign-up {
+    background-color: #3B57F4;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Show six-dot button only on mobile */
+@media (max-width: 991px) {
+    .menu-btn {
+        display: block;
+    }
+
+    .navbar-nav {
+        display: none !important;
+    }
+}
+
+/* Hide mobile menu for desktop view */
+@media (min-width: 992px) {
+    .menu-container {
+        display: none !important;
+    }
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+}
+
+.feature-title {
+    color: #333;
+    font-weight: 600;
+}
+
+.resources-section {
+    background-color: #f8f9fa;
+}
+
+.shark-investor-badge {
+    background-color: #17a2b8;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.confetti-background {
+    position: relative;
+    overflow: hidden;
+}
+
+body {
+    padding-top: 70px; /* Adjusted to match the reduced navbar height */
+}
+
+.navbar-nav .nav-link {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+}
+
+.btn-primary {
+    font-size: 0.875rem;
+}
+
+.confetti-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% -20%, rgba(255,182,193,0.3) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.fw-bold {
+    text-align: left;
+}
+
+.rightmost-container {
+    margin-top: -50px; /* Slight lift to match image layout */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar-nav .nav-link {
+        font-size: 0.75rem;
+    }
+
+    .btn-primary {
+        font-size: 0.75rem;
+    }
+
+    .hero-image {
+        height: 400px; /* Adjust height for mobile */
+    }
+
+    .feature-card {
+        margin-bottom: 20px; /* Add spacing between cards */
+    }
+
+    .text-center {
+        text-align: center; /* Center text on smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .feature-icon {
+        width: 30px; /* Smaller icons for mobile */
+        height: 30px;
+    }
+
+    .fw-bold {
+        font-size: 1.5rem; /* Adjust font size for headings */
+    }
+}
+    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bluestock - Stock Market Analytics</title>
+  <meta name="description" content="Free & Open Stock Market Analytics For GenZ" />
+  <meta name="author" content="Bluestock" />
+  <meta property="og:image" content="/og-image.png" />
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <div id="root">
+    <nav class="navbar navbar-expand-lg fixed-top py-0 px-2">
+      <div class="container-fluid d-flex justify-content-between align-items-center">
+          <!-- Logo -->
+          <a class="navbar-brand" href="#">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/34e822a9b0ce102e0545f37d403492a9ef3d8830" alt="Bluestock Logo" height="70">
+              <span class="ms-2">BLUESTOCK</span>
+          </a>
+  
+          <!-- Desktop Navbar Links -->
+          <div class="collapse navbar-collapse justify-content-center d-none d-lg-flex">
+              <ul class="navbar-nav">
+                  <li class="nav-item"><a class="nav-link fw-normal text-secondary" href="#">PRODUCTS</a></li>
+                  <li class="nav-item"><a class="nav-link fw-normal text-secondary" href="#">COMMUNITY</a></li>
+                  <li class="nav-item"><a class="nav-link fw-normal text-secondary" href="#">MEDIA</a></li>
+                  <li class="nav-item"><a class="nav-link fw-normal text-secondary" href="#">SUPPORT</a></li>
+                  <li class="nav-item"><a class="nav-link fw-normal text-secondary" href="#">LIVE NEWS <span class="badge bg-primary">NEW</span></a></li>
+              </ul>
+          </div>
+  
+          <!-- Right Side (Desktop: Sign In & Sign Up | Mobile: Six-Dot Menu) -->
+          <div class="d-flex align-items-center">
+              <a href="#" class="fw-normal me-3 d-none d-lg-inline">Sign In</a>
+              <button class="btn btn-primary fw-normal me-3 d-none d-lg-inline">Sign Up Now</button>
+  
+              <!-- Six-Dot Button (Visible Only on Mobile) -->
+              <button class="menu-btn" id="menuBtn">
+                <i class="fas fa-th"></i>
+            </button>
+            
+          </div>
+      </div>
+  </nav>
+  
+  <!-- Mobile Menu -->
+  <div class="menu-container" id="menu">
+      <div class="menu-header">
+          <span></span>
+          <button class="close-btn" id="closeBtn">&times;</button>
+      </div>
+  
+      <ul class="menu-list">
+          <li>WHO WE ARE?</li>
+          <li class="dropdown">PRODUCTS <span class="arrow">&#9662;</span></li>
+          <li class="dropdown">TOOLS <span class="arrow">&#9662;</span></li>
+          <li class="dropdown">MEDIA <span class="arrow">&#9662;</span></li>
+          <li class="dropdown">SUPPORT <span class="arrow">&#9662;</span></li>
+          <li class="dropdown">OTHERS <span class="arrow">&#9662;</span></li>
+          <li><a href="#" class="text-dark">Sign In</a></li>
+          <li><a href="#" class="btn btn-primary w-100">Sign Up Now</a></li>
+      </ul>
+  </div>
+
+<script>
+   // Open Menu
+document.getElementById("menuBtn").addEventListener("click", function() {
+    document.getElementById("menu").classList.add("active");
+});
+
+// Reference navbar for scrolling effect
+const navbar = document.querySelector(".navbar");
+
+window.addEventListener("scroll", function() {
+    if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
+});
+
+// Close Menu
+document.getElementById("closeBtn").addEventListener("click", function() {
+    document.getElementById("menu").classList.remove("active");
+});
+
+</script>
+
+    <main class="py-4">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="mb-3">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#" class="text-decoration-none">BlueStock</a></li>
+                    <li class="breadcrumb-item"><a href="#" class="text-decoration-none">IPO</a></li>
+                    <li class="breadcrumb-item active">UPCOMING IPO</li>
+                </ol>
+            </nav>
+            
+            <section>
+                <div class="mb-4">
+                    <h1 class="fs-2 fw-bold">Upcoming IPO</h1>
+                    <p class="text-muted">Companies that have filed for an IPO with SEBI. Few details might be disclosed by the companies later.</p>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-8">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label for="issue-type" class="form-label small">Issue Type</label>
+                                <select id="issue-type" class="form-select form-select-sm">
+                                    <option value="all">All Types</option>
+                                    <option value="book-built">Book Built</option>
+                                    <option value="fixed-price">Fixed Price</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="price-range" class="form-label small">Price Range</label>
+                                <select id="price-range" class="form-select form-select-sm">
+                                    <option value="all">All Ranges</option>
+                                    <option value="0-100">₹0 - ₹100</option>
+                                    <option value="101-500">₹101 - ₹500</option>
+                                    <option value="501-1000">₹501 - ₹1000</option>
+                                    <option value="1001+">₹1001+</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="issue-size" class="form-label small">Issue Size</label>
+                                <select id="issue-size" class="form-select form-select-sm">
+                                    <option value="all">All Sizes</option>
+                                    <option value="small">Small (< 100 Cr.)</option>
+                                    <option value="medium">Medium (100-500 Cr.)</option>
+                                    <option value="large">Large (> 500 Cr.)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="sort-by" class="form-label small">Sort By</label>
+                        <select id="sort-by" class="form-select form-select-sm">
+                            <option value="open-date-asc">Open Date (Earliest First)</option>
+                            <option value="open-date-desc">Open Date (Latest First)</option>
+                            <option value="price-asc">Price Band (Low to High)</option>
+                            <option value="price-desc">Price Band (High to Low)</option>
+                            <option value="issue-size-asc">Issue Size (Small to Large)</option>
+                            <option value="issue-size-desc">Issue Size (Large to Small)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row g-4" id="ipo-listings">
+                    <!-- IPO cards will be dynamically generated here -->
+                </div>
+            </section>
+        </div>
+    </main>
+    <!-- FAQ Section HTML -->
+<section class="faq-section mt-5 mb-5">
+    <div class="container">
+      <h2 class="mb-2">Frequently Asked Questions?</h2>
+      <p class="text-muted mb-5">Find answers to common questions that come in your mind related to IPO.</p>
+      
+      <div class="accordion" id="ipoFaqAccordion">
+        <!-- FAQ Item 1 -->
+        <div class="accordion-item border-0 mb-4">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button shadow-none ps-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              How to Subscribe to an IPO?
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#ipoFaqAccordion">
+            <div class="accordion-body ps-4 pt-0">
+              <ul class="list-unstyled">
+                <li class="mb-2">• Step 1: Login to your respective service provider.</li>
+                <li class="mb-2">• Step 2: Click on the IPO button.</li>
+                <li class="mb-2">• Step 3: Select the IPO you want to bid and enter the relevant details.</li>
+                <li class="mb-2">• Step4: Your subscription will be completed once you make the payment or give permission.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 2 -->
+        <div class="accordion-item border-0 mb-4">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button shadow-none ps-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Should I buy an IPO first day?
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#ipoFaqAccordion">
+            <div class="accordion-body ps-4 pt-0">
+              <p>Whether to buy an IPO on the first day depends on your investment strategy and risk tolerance. IPOs can be volatile on the first day of trading. If you believe in the company's long-term prospects and have done thorough research, investing on the first day might be suitable. However, waiting to see how the market reacts can provide more information for making an informed decision.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 3 -->
+        <div class="accordion-item border-0 mb-4">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button shadow-none ps-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              How do you know if an IPO is good?
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#ipoFaqAccordion">
+            <div class="accordion-body ps-4 pt-0">
+              <p>To evaluate if an IPO is good, consider these factors:</p>
+              <ul class="list-unstyled">
+                <li class="mb-2">• Company's financial health and growth trajectory</li>
+                <li class="mb-2">• Management team's experience and track record</li>
+                <li class="mb-2">• Business model and competitive advantages</li>
+                <li class="mb-2">• Market potential and industry trends</li>
+                <li class="mb-2">• Valuation relative to peers</li>
+                <li class="mb-2">• Use of IPO proceeds</li>
+                <li class="mb-2">• Risk factors mentioned in the prospectus</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 4 -->
+        <div class="accordion-item border-0 mb-4">
+          <h2 class="accordion-header" id="headingFour">
+            <button class="accordion-button shadow-none ps-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              How to check IPO start date?
+            </button>
+          </h2>
+          <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#ipoFaqAccordion">
+            <div class="accordion-body ps-4 pt-0">
+              <p>You can check IPO start dates through:</p>
+              <ul class="list-unstyled">
+                <li class="mb-2">• Stock exchange websites (NSE, BSE)</li>
+                <li class="mb-2">• SEBI website</li>
+                <li class="mb-2">• Financial news portals</li>
+                <li class="mb-2">• Your brokerage platform</li>
+                <li class="mb-2">• Company announcements and Red Herring Prospectus</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 5 -->
+        <div class="accordion-item border-0 mb-4">
+          <h2 class="accordion-header" id="headingFive">
+            <button class="accordion-button shadow-none ps-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              What is issue size?
+            </button>
+          </h2>
+          <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#ipoFaqAccordion">
+            <div class="accordion-body ps-4 pt-0">
+              <p>Issue size refers to the total amount of money a company aims to raise through its IPO. It is calculated by multiplying the number of shares offered in the IPO by the issue price per share. The issue size indicates the scale of the offering and can influence investor interest and market liquidity after listing.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 6 -->
+        <div class="accordion-item border-0 mb-4">
+          <h2 class="accordion-header" id="headingSix">
+            <button class="accordion-button shadow-none ps-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+              How many shares in a lot?
+            </button>
+          </h2>
+          <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#ipoFaqAccordion">
+            <div class="accordion-body ps-4 pt-0">
+              <p>The number of shares in a lot varies for each IPO and is determined by the company. SEBI regulations require that the minimum application value should be within the range of ₹10,000 to ₹15,000. Based on the issue price, the lot size is calculated to fall within this range. For example, if the issue price is ₹500, the lot size might be set at 30 shares (₹15,000 total value).</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 7 -->
+        <div class="accordion-item border-0 mb-4">
+          <h2 class="accordion-header" id="headingSeven">
+            <button class="accordion-button shadow-none ps-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+              How is the lot size calculated?
+            </button>
+          </h2>
+          <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#ipoFaqAccordion">
+            <div class="accordion-body ps-4 pt-0">
+              <p>Lot size is calculated based on SEBI's guidelines for minimum application value:</p>
+              <ul class="list-unstyled">
+                <li class="mb-2">• SEBI mandates a minimum application value between ₹10,000 and ₹15,000</li>
+                <li class="mb-2">• Lot size = Minimum application value ÷ Issue price (rounded to nearest whole number)</li>
+                <li class="mb-2">• For example: If issue price is ₹350, and minimum application value is set at ₹14,000, then lot size = ₹14,000 ÷ ₹350 = 40 shares</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 8 -->
+        <div class="accordion-item border-0 mb-4">
+          <h2 class="accordion-header" id="headingEight">
+            <button class="accordion-button shadow-none ps-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+              Who decides the IPO price band?
+            </button>
+          </h2>
+          <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#ipoFaqAccordion">
+            <div class="accordion-body ps-4 pt-0">
+              <p>The IPO price band is decided by the company in consultation with the Book Running Lead Managers (BRLMs) or investment bankers. They consider factors such as:</p>
+              <ul class="list-unstyled">
+                <li class="mb-2">• Company's financial performance and growth prospects</li>
+                <li class="mb-2">• Valuation of comparable companies in the same sector</li>
+                <li class="mb-2">• Current market conditions and investor sentiment</li>
+                <li class="mb-2">• Feedback from institutional investors during pre-IPO roadshows</li>
+                <li class="mb-2">• Overall demand expectations</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 9 -->
+        <div class="accordion-item border-0 mb-4">
+          <h2 class="accordion-header" id="headingNine">
+            <button class="accordion-button shadow-none ps-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+              What is IPO GMP?
+            </button>
+          </h2>
+          <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#ipoFaqAccordion">
+            <div class="accordion-body ps-4 pt-0">
+              <p>IPO GMP (Grey Market Premium) is the premium amount at which IPO shares are traded in the unofficial/grey market before they are officially listed on the stock exchange. It indicates the market sentiment and potential listing gains:</p>
+              <ul class="list-unstyled">
+                <li class="mb-2">• Positive GMP suggests the stock might list above its issue price</li>
+                <li class="mb-2">• Negative GMP suggests the stock might list below its issue price</li>
+                <li class="mb-2">• GMP is unofficial and can fluctuate significantly based on market sentiment</li>
+                <li class="mb-2">• It should not be the sole factor for investment decisions</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 10 -->
+        <div class="accordion-item border-0 mb-4">
+          <h2 class="accordion-header" id="headingTen">
+            <button class="accordion-button shadow-none ps-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+              How many lots should I apply for IPO?
+            </button>
+          </h2>
+          <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#ipoFaqAccordion">
+            <div class="accordion-body ps-4 pt-0">
+              <p>The number of lots you should apply for an IPO depends on:</p>
+              <ul class="list-unstyled">
+                <li class="mb-2">• Your investment budget and risk appetite</li>
+                <li class="mb-2">• Expected demand for the IPO (higher demand means lower allotment chances)</li>
+                <li class="mb-2">• Retail investors can apply for up to 13-14 lots (maximum ₹2 lakhs) in the retail category</li>
+                <li class="mb-2">• Applying for multiple lots increases investment amount but doesn't necessarily improve allotment chances</li>
+                <li class="mb-2">• For heavily oversubscribed IPOs, even single-lot applications may face a lottery-based allotment</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <footer class="bg-light mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="IMAGESS/logo.jpg" alt="BlueStock Logo" height="40" class="me-2">
+                        
+                    </div>
+                    <p class="text-muted small">BlueStock is a leading financial services platform providing access to IPOs, stocks, mutual funds, and more.</p>
+                </div>
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-md-3 col-6 mb-4">
+                            <h5 class="fs-6 fw-bold mb-3">Company</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><a href="#" class="text-decoration-none text-muted">About Us</a></li>
+                                <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Careers</a></li>
+                                <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Press</a></li>
+                                <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Contact</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-6 mb-4">
+                            <h5 class="fs-6 fw-bold mb-3">Products</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Trading</a></li>
+                                <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Investments</a></li>
+                                <li class="mb-2"><a href="#" class="text-decoration-none text-muted">IPO</a></li>
+                                <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Mutual Funds</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-6 mb-4">
+                            <h5 class="fs-6 fw-bold mb-3">Resources</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Blog</a></li>
+                                <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Help Center</a></li>
+                                <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Community</a></li>
+                                <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Developers</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-6 mb-4">
+                            <h5 class="fs-6 fw-bold mb-3">Legal</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Privacy Policy</a></li>
+                                <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Terms of Service</a></li>
+                                <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Disclaimer</a></li>
+                                <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Security</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <p class="text-muted small mb-3 mb-md-0">&copy; 2025 BlueStock. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#" class="text-muted me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-muted me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-muted me-3"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-muted"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Template for IPO Card -->
+    <template id="ipo-card-template">
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="me-3">
+                            <img src="" alt="Company Logo" class="company-logo" width="50" height="50">
+                        </div>
+                        <h5 class="card-title company-name mb-0"></h5>
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-4">
+                            <div class="small text-muted">PRICE BAND</div>
+                            <div class="fw-bold price-band"></div>
+                        </div>
+                        <div class="col-4">
+                            <div class="small text-muted">OPEN</div>
+                            <div class="fw-bold open-date"></div>
+                        </div>
+                        <div class="col-4">
+                            <div class="small text-muted">CLOSE</div>
+                            <div class="fw-bold close-date"></div>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-4">
+                            <div class="small text-muted">ISSUE SIZE</div>
+                            <div class="fw-bold issue-size"></div>
+                        </div>
+                        <div class="col-4">
+                            <div class="small text-muted">ISSUE TYPE</div>
+                            <div class="fw-bold issue-type"></div>
+                        </div>
+                        <div class="col-4">
+                            <div class="small text-muted">LISTING DATE</div>
+                            <div class="fw-bold listing-date"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-white border-top-0 d-flex justify-content-start gap-2 py-3">
+                    <button class="btn btn-outline-primary btn-sm rhp-btn">RHP</button>
+                    <button class="btn btn-danger btn-sm drhp-btn">DRHP</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

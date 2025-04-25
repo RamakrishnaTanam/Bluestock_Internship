@@ -1,0 +1,147 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block extrastyle %}
+<style>
+    :root {
+        --primary: #2c3e50;
+        --secondary: #34495e;
+        --accent: #3498db;
+        --primary-fg: #fff;
+        --body-fg: #333;
+        --body-bg: #f8f9fa;
+        --body-quiet-color: #666;
+        --body-loud-color: #000;
+        --header-color: #fff;
+        --header-branding-color: var(--accent);
+        --header-bg: var(--primary);
+        --header-link-color: var(--primary-fg);
+        --breadcrumbs-fg: #c4dce8;
+        --breadcrumbs-link-fg: var(--body-bg);
+        --breadcrumbs-bg: var(--primary);
+        --link-fg: #447e9b;
+        --link-hover-color: #036;
+        --link-selected-fg: #5b80b2;
+        --hairline-color: #e8e8e8;
+        --border-color: #ccc;
+        --error-fg: #ba2121;
+        --message-success-bg: #dfd;
+        --message-warning-bg: #ffc;
+        --message-error-bg: #ffefef;
+        --darkened-bg: #f8f8f8;
+        --selected-bg: #e4e4e4;
+        --selected-row: #ffc;
+        --button-fg: #fff;
+        --button-bg: var(--primary);
+        --button-hover-bg: #609ab6;
+        --default-button-bg: var(--secondary);
+        --default-button-hover-bg: #205067;
+        --close-button-bg: #888;
+        --close-button-hover-bg: #747474;
+        --delete-button-bg: #ba2121;
+        --delete-button-hover-bg: #a41515;
+        --object-tools-fg: var(--button-fg);
+        --object-tools-bg: var(--close-button-bg);
+        --object-tools-hover-bg: var(--close-button-hover-bg);
+    }
+
+    #header {
+        background: var(--header-bg);
+        color: var(--header-color);
+    }
+
+    #branding h1 {
+        color: var(--header-branding-color);
+    }
+
+    .module h2, .module caption, .inline-group h2 {
+        background: var(--primary);
+    }
+
+    div.breadcrumbs {
+        background: var(--breadcrumbs-bg);
+    }
+
+    .button, input[type=submit], input[type=button], .submit-row input, a.button {
+        background: var(--button-bg);
+    }
+
+    .button:active, input[type=submit]:active, input[type=button]:active,
+    .button:focus, input[type=submit]:focus, input[type=button]:focus,
+    .button:hover, input[type=submit]:hover, input[type=button]:hover {
+        background: var(--button-hover-bg);
+    }
+
+    .button.default, input[type=submit].default, .submit-row input.default {
+        background: var(--default-button-bg);
+    }
+
+    .button.default:active, input[type=submit].default:active,
+    .button.default:focus, input[type=submit].default:focus,
+    .button.default:hover, input[type=submit].default:hover {
+        background: var(--default-button-hover-bg);
+    }
+
+    .badge {
+        display: inline-block;
+        padding: 0.25em 0.4em;
+        font-size: 75%;
+        font-weight: 700;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: 0.25rem;
+    }
+
+    .badge-warning {
+        color: #856404;
+        background-color: #fff3cd;
+    }
+
+    .badge-success {
+        color: #155724;
+        background-color: #d4edda;
+    }
+
+    .badge-danger {
+        color: #721c24;
+        background-color: #f8d7da;
+    }
+
+    .badge-info {
+        color: #0c5460;
+        background-color: #d1ecf1;
+    }
+
+    #branding h1 {
+        margin: 0;
+        padding: 5px 10px;
+        text-indent: 0;
+        background: none;
+        color: var(--header-color);
+    }
+
+    #branding h1 a:link, #branding h1 a:visited {
+        color: var(--header-color);
+    }
+
+    #branding h1 img {
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+        <img src="{% static 'admin/img/logo.svg' %}" alt="Bluestock Logo" />
+        {{ site_header|default:_('Django administration') }}
+    </a>
+</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %} 
