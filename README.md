@@ -10,39 +10,7 @@ A Django-based web application for managing IPO listings and applications.
 - Application tracking
 - Import/export functionality
 
-## Installation
 
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/bluestock.git
-cd bluestock
-```
-
-2. Create a virtual environment:
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-3. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-4. Run migrations:
-```bash
-python backend/manage.py migrate
-```
-
-5. Create a superuser:
-```bash
-python backend/manage.py createsuperuser
-```
-
-6. Run the development server:
-```bash
-python backend/manage.py runserver
-```
 
 ## Project Structure
 
